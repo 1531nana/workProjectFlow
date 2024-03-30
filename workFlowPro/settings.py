@@ -30,11 +30,13 @@ ALLOWED_HOSTS = []
 
 # Application definition
 MY_OWN_APPS = [
-    'projects'
+    'app',
+    'app.user'
 ]
 
 THIRD_APPS = [
-    'rest_framework'
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 DJANGO_APPS = [
@@ -84,8 +86,12 @@ WSGI_APPLICATION = 'workFlowPro.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db_work_flow_pro',
+        'USER': 'postgres',
+        'PASSWORD': 'luza1999',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
@@ -108,7 +114,26 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'user.User'
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication',
+#     ],
+#     # Other settings...
+# }
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.BasicAuthentication',
+#         'rest_framework.authentication.SessionAuthentication',
+#     ]
+# }
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+ ]
+}
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
